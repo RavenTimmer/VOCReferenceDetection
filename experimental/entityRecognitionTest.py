@@ -1,4 +1,5 @@
 from transformers import AutoTokenizer, AutoModelForTokenClassification, pipeline
+import pprint
 import torch
 
 
@@ -8,7 +9,7 @@ def clean_ner_output(ner_output):
 
     for token in ner_output:
         label = token['entity']
-        word = token['word'].replace('▁', ' ')
+        word = token['word']
         score = token['score']
 
         if label.startswith('B-'):
@@ -16,11 +17,12 @@ def clean_ner_output(ner_output):
                 entities.append(current_entity)
             current_entity = {
                 'entity': label[2:],
-                'text': word.strip(),
+                'text': word.replace('▁', ' ').strip(),
                 'score': score
             }
         elif label.startswith('I-') and current_entity:
-            current_entity['text'] += word.strip()
+
+            current_entity['text'] += word.strip().replace('▁', ' ')
             current_entity['score'] = (
                 current_entity['score'] + score) / 2  # average
         else:
@@ -41,7 +43,7 @@ def read_file(file_path):
     return text
 
 
-device = 0 if torch.cuda.is_available() else -1  # 0 = first GPU, -1 = CPU
+device = 0 if torch.cuda.is_available() else -1
 
 tokenizer = AutoTokenizer.from_pretrained("CLTL/gm-ner-xlmrbase")
 model = AutoModelForTokenClassification.from_pretrained(
@@ -49,11 +51,16 @@ model = AutoModelForTokenClassification.from_pretrained(
 
 nlp = pipeline("ner", model=model, tokenizer=tokenizer, device=device)
 
-example = read_file("testinput.txt")
+example = read_file("morespecificgoudenleeuwinput.txt")
 
 ner_results = nlp(example)
+print("Raw NER Results:")
+pprint.pprint(ner_results)
 
 ner_results = clean_ner_output(ner_results)
-print("NER Results:")
 
-print(ner_results)
+print("")
+print("NER Results:")
+pprint.pprint(ner_results)
+
+# Beschrijving van de series en archiefbestanddelen

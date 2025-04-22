@@ -37,6 +37,7 @@ Gives the (post-processed) entities:
 \[{'entity': 'PER', 'text': 'Erasmus', 'score': np.float32(0.52735126)},\ {'entity': 'LOC', 'text': 'Japan', 'score': np.float32(0.9614511)},\ {'entity': 'SHP', 'text': 'Specx', 'score': np.float32(0.67104995)},\ {'entity': 'SHP', 'text': 'Vlack', 'score': np.float32(0.641053)},\ {'entity': 'PER', 'text': 'VanDiemen', 'score': np.float32(0.9959038)},\ {'entity': 'PER', 'text': 'VanderBurchden', 'score': np.float32(0.7346338)},\ {'entity': 'SHP', 'text': 'GoudenLeeuw', 'score': np.float32(0.9601866)},\ {'entity': 'LOC', 'text': 'Cust', 'score': np.float32(0.90481424)}\]
 ])
 
-
-
 #line(length: 100%)
+
+
+= 21/04/2025
