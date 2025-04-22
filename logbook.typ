@@ -39,7 +39,7 @@ Gives the (post-processed) entities:
 
 #line(length: 100%)
 
-= 21/04/2025
+= 22/04/2025
 
 Extracted all dates from the original National Archives xml file (voc\_inventory.xml) and exported them to inventory\_dates.txt.
 
@@ -48,5 +48,7 @@ Dates that are considered ranges are saved as a tuple containing the start and e
 Any references to centuries are regexed to a fitting year, so: 18e eeuw $arrow.double$ 1700
 
 The data seems to be complete but is to be finetuned based on how it will be used later.
+
+The program now also saves a dump of the dictionary to the file: Inventory\dates.pkl which can be used to load the data back into a dictionary. This is done using the pickle library. The keys are the years, and the values is a list of each entry that corresponds to that year.
 
 #line(length: 100%)

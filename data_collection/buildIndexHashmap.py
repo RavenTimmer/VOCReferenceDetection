@@ -1,10 +1,12 @@
 from bs4 import BeautifulSoup
+import pickle
 import re
 
 
+# Uses regex to extract the years from the date text.
 def extract_years(date_text):
     if date_text == 'z.d':
-        return 'unknown'
+        return None
 
     clean = re.sub(r'[\[\]\(\)\?]', '', date_text.lower())
 
@@ -13,8 +15,13 @@ def extract_years(date_text):
 
     if not years:
         centuries = re.findall(r'(\d{1,2})e\b', clean)
+
         if centuries:
             years = [int(c) * 100 - 100 for c in centuries]
+
+    for year in years:
+        if year < 1500:
+            years.remove(year)
 
     if not years:
         return None
@@ -29,10 +36,12 @@ with open('../data/voc_inventory.xml', 'r') as f:
 
 output = open('../data/inventory_dates.txt', 'w')
 
-xml_data = BeautifulSoup(data, "xml")
+dictionary = {}
 
+xml_data = BeautifulSoup(data, "xml")
 inventory = xml_data.find_all('did')
 
+# Saves each entry into a file and into the dictionary.
 for entry in inventory:
     entry_number = entry.find('unitid', attrs={'identifier': True})
     if not entry_number:
@@ -40,14 +49,31 @@ for entry in inventory:
 
     entry_date = entry.find('unitdate')
 
-    # print('number: ' + entry_number.text.strip())
-
     if entry_date and "normal" in entry_date:
-        date = str(extract_years(entry_date['normal']))
+        date = extract_years(entry_date['normal'])
     elif entry_date:
-        date = str(extract_years(entry_date.text.strip()))
+        date = extract_years(entry_date.text.strip())
     else:
-        date = "unknown"
+        date = None
+
+    dates = []
+    if type(date) is tuple:
+        if date[0] < date[1]:
+            dates = list(range(date[0], date[1] + 1))
+        else:
+            dates = list(range(date[1], date[0] + 1))
+
+    elif date is not None:
+        dates = [date]
+
+    for x in dates:
+        if x not in dictionary:
+            dictionary[x] = []
+        dictionary[x].append(entry_number.text.strip())
 
     line = f"{entry_number.text.strip()}, {date}\n"
     output.write(line)
+
+# Saves the dictionary to a file
+with open('../data/inventory_dates.pkl', 'wb') as file:
+    pickle.dump(dictionary, file)
