@@ -39,5 +39,14 @@ Gives the (post-processed) entities:
 
 #line(length: 100%)
 
-
 = 21/04/2025
+
+Extracted all dates from the original National Archives xml file (voc\_inventory.xml) and exported them to inventory\_dates.txt.
+
+Dates that are considered ranges are saved as a tuple containing the start and end year. Anything that is not a year is discarded, meaning that 1720 May 10 $arrow.double$ 1720.
+
+Any references to centuries are regexed to a fitting year, so: 18e eeuw $arrow.double$ 1700
+
+The data seems to be complete but is to be finetuned based on how it will be used later.
+
+#line(length: 100%)
