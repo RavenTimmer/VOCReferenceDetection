@@ -52,3 +52,8 @@ The data seems to be complete but is to be finetuned based on how it will be use
 The program now also saves a dump of the dictionary to the file: Inventory\dates.pkl which can be used to load the data back into a dictionary. This is done using the pickle library. The keys are the years, and the values is a list of each entry that corresponds to that year.
 
 #line(length: 100%)
+
+= 24/04/2025
+
+A first version of the searching is working. It makes use of the native Knaw API documented here: #link("https://gloccoli.tt.di.huc.knaw.nl/swagger#/")
+It is able to use the dictionary created before to search for word combinations in a range around a given year. For example "Gouden AND Leeuw" around 1633 return 155 hits and around 1674 it returns 11 hits.
