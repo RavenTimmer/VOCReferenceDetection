@@ -62,8 +62,6 @@ def clean_text(text):
 
     text = ' '.join(text)
 
-    print(text)
-
     return text.replace("<em>", "").replace("</em>", "").rstrip("\n")
 
 
