@@ -50,4 +50,34 @@ def return_requests(text, inv_numbers):
         response_json = response.json()
         results += response_json['results']
 
-    return results
+    return clean_output(results)
+
+
+def clean_text(text):
+    """
+    Clean the text by concatenating the list and removing HTML tags.
+    """
+    if not isinstance(text, list):
+        return None
+
+    text = ' '.join(text)
+
+    print(text)
+
+    return text.replace("<em>", "").replace("</em>", "").rstrip("\n")
+
+
+def clean_output(results):
+    """
+    Clean the output of the results.
+    """
+    cleaned_results = []
+    for result in results:
+        cleaned_result = {
+            "text": clean_text(result['_hits']['text']),
+            "id": result['_id'],
+            "document": result['document'],
+            "invNr": result['invNr'],
+        }
+        cleaned_results.append(cleaned_result)
+    return cleaned_results
