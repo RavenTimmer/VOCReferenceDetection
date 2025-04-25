@@ -57,3 +57,5 @@ The program now also saves a dump of the dictionary to the file: Inventory\dates
 
 A first version of the searching is working. It makes use of the native Knaw API documented here: #link("https://gloccoli.tt.di.huc.knaw.nl/swagger#/")
 It is able to use the dictionary created before to search for word combinations in a range around a given year. For example "Gouden AND Leeuw" around 1633 return 155 hits and around 1674 it returns 11 hits.
+
+Added a batch search function that can request all of the results by splitting them up into multiple smaller requests. For now I will limit the max number of results to 200, as to not overload the server. This can be changed later if needed.

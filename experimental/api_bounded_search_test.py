@@ -25,7 +25,7 @@ def get_inv_numbers(year):
     """
     Get the inventory numbers for a range around the given year.
     """
-    offsets = 5
+    offsets = 1
     range_years = range(year - offsets, year + offsets)
     inv_numbers = set()
 
