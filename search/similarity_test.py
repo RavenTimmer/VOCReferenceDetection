@@ -37,6 +37,28 @@ def clean_text(text):
     return re.sub(r'[^a-zA-Z\s]', '', text)
 
 
+def run_transformer(model_name, texts, original_text):
+    print(f"Running: {model_name} model...\n")
+    model = SentenceTransformer(model_name)
+
+    text_embeddings = (model.encode(
+        texts, convert_to_numpy=True, show_progress_bar=True))
+    query_embedding = (model.encode(
+        [original_text], convert_to_numpy=True))
+
+    index = faiss.IndexFlatIP(text_embeddings.shape[1])
+    index.add(text_embeddings)
+
+    top_k = 5
+    distances, indices = index.search(query_embedding, top_k)
+
+    print("\nTop Matching Snippets:\n")
+    for rank, idx in enumerate(indices[0]):
+        print(f"=>  Rank {rank + 1}")
+        print(f"    Text: {texts[idx]}")
+        print(f"    Cosine Similarity: {distances[0][rank]:.4f}\n")
+
+
 if __name__ == "__main__":
 
     original_text = input("Enter the text to search for: ")
@@ -80,21 +102,11 @@ if __name__ == "__main__":
         selected_entity, get_inv_numbers(year), len(original_text))
     texts = [result['text'] for result in request_results if 'text' in result]
 
-    model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+    run_transformer('paraphrase-multilingual-MiniLM-L12-v2', texts, original_text)
+    run_transformer('all-MiniLM-L6-v2', texts, original_text)
+    run_transformer('distiluse-base-multilingual-cased-v2', texts, original_text)
+    run_transformer('stsb-roberta-base', texts, original_text)
+    run_transformer('LaBSE', texts, original_text)
 
-    text_embeddings = normalize(model.encode(
-        texts, convert_to_numpy=True, show_progress_bar=True))
-    query_embedding = normalize(model.encode(
-        [original_text], convert_to_numpy=True))
 
-    index = faiss.IndexFlatIP(text_embeddings.shape[1])
-    index.add(text_embeddings)
 
-    top_k = 5
-    distances, indices = index.search(query_embedding, top_k)
-
-    print("\nTop Matching Snippets:\n")
-    for rank, idx in enumerate(indices[0]):
-        print(f"=>  Rank {rank + 1}")
-        print(f"    Text: {texts[idx]}")
-        print(f"    Cosine Similarity: {distances[0][rank]:.4f}\n")
