@@ -61,3 +61,8 @@ It is able to use the dictionary created before to search for word combinations 
 Added a batch search function that can request all of the results by splitting them up into multiple smaller requests. For now I will limit the max number of results to 200, as to not overload the server. This can be changed later if needed.
 
 The results of the requests are cleaned up and saved to a dictionary. With the keys: text, id, document, invNr.
+
+First version using a similarity search is working. It uses SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+
+Plot the scores and try to see where the scores quickly deminish.
+Make a small presentation for the GLOBALISE team

@@ -1,5 +1,4 @@
 from transformers import AutoTokenizer, AutoModelForTokenClassification, pipeline
-import pprint
 import torch
 
 
@@ -37,30 +36,12 @@ def clean_ner_output(ner_output):
     return entities
 
 
-def read_file(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file:
-        text = file.read()
-    return text
+def entity_recognition(text):
+    device = 0 if torch.cuda.is_available() else -1
 
+    tokenizer = AutoTokenizer.from_pretrained("CLTL/gm-ner-xlmrbase")
+    model = AutoModelForTokenClassification.from_pretrained(
+        "CLTL/gm-ner-xlmrbase").to(device)
 
-device = 0 if torch.cuda.is_available() else -1
-
-tokenizer = AutoTokenizer.from_pretrained("CLTL/gm-ner-xlmrbase")
-model = AutoModelForTokenClassification.from_pretrained(
-    "CLTL/gm-ner-xlmrbase").to(device)
-
-nlp = pipeline("ner", model=model, tokenizer=tokenizer, device=device)
-
-example = read_file("goudenleeuwinput.txt")
-
-ner_results = nlp(example)
-print("Raw NER Results:")
-pprint.pprint(ner_results)
-
-ner_results = clean_ner_output(ner_results)
-
-print("")
-print("NER Results:")
-pprint.pprint(ner_results)
-
-# Beschrijving van de series en archiefbestanddelen
+    nlp = pipeline("ner", model=model, tokenizer=tokenizer, device=device)
+    return clean_ner_output(nlp(text))

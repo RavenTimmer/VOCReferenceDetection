@@ -1,5 +1,5 @@
-import pickle
 import requests
+import re
 
 url = "https://gloccoli.tt.di.huc.knaw.nl/projects/globalise/search"
 
@@ -18,7 +18,7 @@ HEADERS = {
 }
 
 
-def return_requests(text, inv_numbers):
+def return_requests(text, inv_numbers, size=50):
     """
     Return the requests for a given year range.
     """
@@ -55,14 +55,16 @@ def return_requests(text, inv_numbers):
 
 def clean_text(text):
     """
-    Clean the text by concatenating the list and removing HTML tags.
+    Clean the text by concatenating the list, removing HTML tags, and stripping non-alphabetic characters.
     """
     if not isinstance(text, list):
         return None
 
     text = ' '.join(text)
+    text = text.replace("<em>", "").replace("</em>", "").rstrip("\n")
+    # text = re.sub(r'[^a-zA-Z\s]', '', text)
 
-    return text.replace("<em>", "").replace("</em>", "").rstrip("\n")
+    return text
 
 
 def clean_output(results):
