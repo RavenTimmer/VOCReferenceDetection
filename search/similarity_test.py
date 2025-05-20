@@ -107,6 +107,3 @@ if __name__ == "__main__":
     run_transformer('distiluse-base-multilingual-cased-v2', texts, original_text)
     run_transformer('stsb-roberta-base', texts, original_text)
     run_transformer('LaBSE', texts, original_text)
-
-
-
