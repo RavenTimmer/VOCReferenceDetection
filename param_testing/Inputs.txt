@@ -11,31 +11,37 @@ Year: 1742
 Term: Johannes OR Thedens
 
 Input 3:
-Text:
-Year:
+Source:
+Text: Naderhant hebben wij Bantam onder scheut ende doel van canon met verscheyde schepen , jachten ende chaloupen , die andersints alhier ter reede vruchteloos sonder dienst souden gelegen hebben , beset gehouden ende de dichte ende de naeuwe besettinge tot op den llen januarij gecontinueert , als wanneer onse gemelte schepen (willende schuwen ende eviteeren het groot perijckel der branders , die den vijant op verscheyde tijden
+Year: 1633
 Term:
 
 Input 4:
+Source:
 Text:
 Year:
 Term:
 
 Input 5:
+Source:
 Text:
 Year:
 Term:
 
 Input 6:
+Source:
 Text:
 Year:
 Term:
 
 Input 7:
+Source:
 Text:
 Year:
 Term:
 
 Input 8:
+Source:
 Text:
 Year:
 Term:
