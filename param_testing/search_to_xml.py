@@ -30,9 +30,9 @@ def clean_text(text):
 
 if __name__ == "__main__":
     original_text = clean_text(
-        "Naderhant hebben wij Bantam onder scheut ende doel van canon met verscheyde schepen , jachten ende chaloupen , die andersints alhier ter reede vruchteloos sonder dienst souden gelegen hebben , beset gehouden ende de dichte ende de naeuwe besettinge tot op den llen januarij gecontinueert , als wanneer onse gemelte schepen (willende schuwen ende eviteeren het groot perijckel der branders , die den vijant op verscheyde tijden")
-    selected_entity = "Bantam"
-    year = 1633
+        "zig te verbinden tot de afgave van een enorme somma van ropia’s 100.000 , -, voordat gemelte nawab gedisponeert heeft konnen werden tot de afgave van een generaal bevelschrift tot het oeffenen van onsen vrijen handel , die in ’ t geheel tot die tijd op een violente en geweldadige wijse gestremt en gesloten was geworden .")
+    selected_entity = "Nawab"
+    year = 1759
 
     print(f"\nSearching for: {selected_entity}")
     print(f"Year: {year}")
