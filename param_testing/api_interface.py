@@ -7,7 +7,7 @@ PARAMS = {
     "indexName": "docs-2024-03-18",
     "from": 0,
     "size": 10,
-    "fragmentSize": 50,
+    "fragmentSize": 100,
     "sortBy": "_score",
     "sortOrder": "DESC"
 }

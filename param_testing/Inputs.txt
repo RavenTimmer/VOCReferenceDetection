@@ -1,0 +1,52 @@
+Input 1:
+Source:
+Text: de Gouden Leeuw  is onbequaem bevonden omme met retouren naer ’t vaderlandt over te gaen, jaa is inwendich soo vergaen, dat, onaengesyen de handt daer extra-ordinaris aengehouden is, niet langer in ’t vaerwater sal connen continueren.
+Year: 1633
+Term: Gouden AND Leeuw
+
+Input 2:
+Source: Kol . Arch. 2406 , VOC 2514 , fol. 1-87 .
+Text: zo is dat een en ander van die efficatie geweest dat de finale dispositie daarover is gesurcheert gebleven tot 30e daaraanvolgende , als wanneer Zijn Edelheyt desselvs zo even aangehaalde intentie wederom ten tapijte , en na het ingekomen advijs van den heere gouverneur-generaal Thedens de zake zooverre gebragt heeft , datter alsdoen g’arresteert is hem per het schip Amsterdam op den 6e november te laten vertrecken , en bij erlanginge van eenig favorabel berigt wegens den Javasen krijg (dog anders niet ) de Oude Zijp tot geselschap mede te geven , invoegen als den heere Valckenier op dien gestipuleerden dag dan ook met voormelte Amsterdam alleen de reyse van dese rheede ondernomen en het generalaat in behoorlijke forma aan desselvs successeur , den presenten heere gouverneur-generaal Johannes Thedens
+Year: 1742
+Term: Johannes OR Thedens
+
+Input 3:
+Text:
+Year:
+Term:
+
+Input 4:
+Text:
+Year:
+Term:
+
+Input 5:
+Text:
+Year:
+Term:
+
+Input 6:
+Text:
+Year:
+Term:
+
+Input 7:
+Text:
+Year:
+Term:
+
+Input 8:
+Text:
+Year:
+Term:
+
+Input 9:
+Text:
+Year:
+Term:
+
+Input 10:
+Text:
+Year:
+Term:
+
