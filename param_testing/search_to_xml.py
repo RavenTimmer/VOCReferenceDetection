@@ -30,9 +30,9 @@ def clean_text(text):
 
 if __name__ == "__main__":
     original_text = clean_text(
-        "In selver voegen hebben wij ook g ’ oordeelt van den considerablen ophef welke de ministers maken in opsigte van zeeker aan haar door den koning van Tematen ter hand gesteld bamboesje met nagulen aan Zijn Hoogheyd , door seekeren in anno 1746 afgesetten Batchiansen goegoegoe (of minister ) overgegeeven , daaruyt immediaat den Batchiansen koning verdenkende aan sluykerije schuldig te zijn , sonder te reflecteeren dat den aanbrenger is een geswooren vijand van dien vorst en dien volgende in allen opsigte voor suspect moet gehouden werden")
-    selected_entity = "Tematen"
-    year = 1753
+        "de overwinning  van Farrukh-siyar deed de rust in Patna terugkeeren, zowel als in de Gangesdelta; 16 maart ging het V.O.C. personeel weer naar Kasimbazar, waar de duan Murshid Kulikhan het vriendelijk ontving, hij verwierf de naam Jafarkhan; Jacob Dijkhoff, opperhoofd van Patna, vertrok met zijn personeel 1 maart derwaarts, het vorige personeel")
+    selected_entity = "Patna"
+    year = 1713
 
     print(f"\nSearching for: {selected_entity}")
     print(f"Year: {year}")
@@ -42,7 +42,7 @@ if __name__ == "__main__":
         selected_entity, get_inv_numbers(year), len(original_text))
     texts = [result['text'] for result in request_results if 'text' in result]
 
-    with open(".csv", mode="w", encoding="utf-8", newline="") as csvfile:
+    with open("Patna.csv", mode="w", encoding="utf-8", newline="") as csvfile:
         if request_results:
             fieldnames = request_results[0].keys()
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
