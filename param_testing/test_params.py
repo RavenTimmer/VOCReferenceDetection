@@ -38,6 +38,15 @@ def clean_text(text):
     return re.sub(r'[^a-zA-Z\s]', '', text)
 
 
+def remove_stopwords(text, stopword_file="voc_stopwords.txt"):
+    with open(stopword_file, "r", encoding="utf-8") as f:
+        stopwords = set(line.strip() for line in f if line.strip())
+
+    words = text.split()
+    filtered_words = [word for word in words if word not in stopwords]
+    return ' '.join(filtered_words)
+
+
 def mean_reciprocal_rank(ranked_indices, correct_indices):
     """Compute Mean Reciprocal Rank (MRR) for the ranked indices."""
     for rank, idx in enumerate(ranked_indices, 1):
@@ -85,26 +94,53 @@ if __name__ == "__main__":
         'NetherlandsForensicInstitute/robbert-2022-dutch-sentence-transformers'
     ]
 
-    inputs = [pd.read_csv(file) for file in files]
-
     model_ranking = {}
-    for i, df in enumerate(inputs):
-        print(f"\nProcessing file: {files[i]}")
-        texts = df['text'].tolist()
-        correct_indices = set(df.index[df['correct'] == 1].tolist())
+
+    # Precumputing all the input texts so they do not have to be computed multiple times
+    # Idk if it adds any speedup, but it looks better
+    inputs = [pd.read_csv(file) for file in files]
+    precomputed_inputs = []
+    for i, data in enumerate(inputs):
+        texts = data['text'].tolist()
         original_text = source_texts[i]
 
+        texts_original = texts
+        query_original = original_text
+
+        texts_cleaned = [clean_text(t) for t in texts]
+        query_cleaned = clean_text(original_text)
+
+        texts_cleaned_stop = [clean_text(remove_stopwords(t)) for t in texts]
+        query_cleaned_stop = clean_text(remove_stopwords(original_text))
+
+        precomputed_inputs.append({
+            'texts_original': texts_original,
+            'query_original': query_original,
+            'texts_cleaned': texts_cleaned,
+            'query_cleaned': query_cleaned,
+            'texts_cleaned_stop': texts_cleaned_stop,
+            'query_cleaned_stop': query_cleaned_stop,
+            'data': data
+        })
+
+
+    # Running all the actuall embeddings on the different inputs that were computed
+    for i, file_inputs in enumerate(precomputed_inputs):
+        print(f"\nProcessing file: {files[i]}")
+        data = file_inputs['data']
+        correct_indices = set(data.index[data['correct'] == 1].tolist())
+
         for model_name in transformers:
-            for cleaned in [False, True]:
-                label = f"cleaned: {model_name}" if cleaned else model_name
+            for variant, label in [
+                (('texts_original', 'query_original'), model_name),
+                (('texts_cleaned', 'query_cleaned'), f"cleaned: {model_name}"),
+                (('texts_cleaned_stop', 'query_cleaned_stop'), f"cleaned+stopwords: {model_name}")
+            ]:
                 print(f"\nEvaluating model: {label}")
                 model = SentenceTransformer(model_name)
-                if cleaned:
-                    proc_texts = [clean_text(t) for t in texts]
-                    proc_query = clean_text(original_text)
-                else:
-                    proc_texts = texts
-                    proc_query = original_text
+
+                proc_texts = file_inputs[variant[0]]
+                proc_query = file_inputs[variant[1]]
 
                 text_embeddings = model.encode(proc_texts, convert_to_numpy=True, show_progress_bar=False)
                 query_embedding = model.encode([proc_query], convert_to_numpy=True)
@@ -127,6 +163,7 @@ if __name__ == "__main__":
                 torch.cuda.empty_cache()
                 gc.collect()
 
+    # Ranking all the models and printing them in order
     print("\nModel Ranking:")
     avg_scores = []
     for model_name, results in model_ranking.items():
@@ -141,3 +178,25 @@ if __name__ == "__main__":
         for result in results:
             print(f"File: {result['file']}, MRR: {result['MRR']:.4f}, MAP: {result['MAP']:.4f}")
         print(f"Average MRR: {avg_mrr:.4f}, Average MAP: {avg_map:.4f}")
+
+
+    # Export the results to a CSV file
+    csv_headers = ['model']
+    for f in files:
+        csv_headers.extend([f"{f}|MRR", f"{f}|MAP"])
+    csv_headers.extend(['AverageMRR', 'AverageMAP'])
+
+    csv_rows = []
+    for model_name, avg_mrr, avg_map, results in avg_scores:
+        row = [model_name]
+        file_scores = {r['file']: r for r in results}
+        for f in files:
+            mrr = file_scores.get(f, {}).get('MRR', '')
+            map_score = file_scores.get(f, {}).get('MAP', '')
+            row.extend([f"{mrr:.4f}" if mrr != '' else '', f"{map_score:.4f}" if map_score != '' else ''])
+        row.extend([f"{avg_mrr:.4f}", f"{avg_map:.4f}"])
+        csv_rows.append(row)
+
+    output_df = pd.DataFrame(csv_rows, columns=csv_headers)
+    output_df.to_csv("model_ranking_results.csv", index=False)
+    print("\nResults exported to model_ranking_results.csv")
