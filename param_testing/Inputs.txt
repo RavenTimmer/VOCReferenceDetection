@@ -18,9 +18,9 @@ Term: Bantam
 
 Input 4:
 Source: 1019 , fol. 1-83 .
-Text: De geestelickheyt en de gemeente in Goa , meynende haer den Coninck verlaeten te hebben , emuleerden hevich tegen den vice-roy , die om finantie te tournieren de gemeente met schattingen ende impositien seer beswaerde.
+Text: Ende sal haer het verlies van Don Felipe Cobo 3 ) met sijne vier vollaeden Conincks roeyschepen vol Chinese waeren (die tot asschen sijn verbrant den 5enmeert lestleden bij Sincapura ,. ) overgroote verslaegentheyt toebrengen Ende sal haer het verlies van Don Felipe Cobo 3 ) met sijne vier vollaeden Conincks roeyschepen vol Chinese waeren (die tot asschen sijn verbrant den 5enmeert lestleden bij Sincapura ,. ) overgroote verslaegentheyt toebrengen
 Year: 1633
-Term: Goa
+Term: Don AND Felipe
 
 Input 5:
 Source:

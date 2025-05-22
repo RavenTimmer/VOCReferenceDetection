@@ -30,9 +30,9 @@ def clean_text(text):
 
 if __name__ == "__main__":
     original_text = clean_text(
-        "De geestelickheyt en de gemeente in Goa , meynende haer den Coninck verlaeten te hebben , emuleerden hevich tegen den vice-roy , die om finantie te tournieren de gemeente met schattingen ende impositien seer beswaerde.")
-    selected_entity = "Goa"
-    year = 1633
+        "In selver voegen hebben wij ook g ’ oordeelt van den considerablen ophef welke de ministers maken in opsigte van zeeker aan haar door den koning van Tematen ter hand gesteld bamboesje met nagulen aan Zijn Hoogheyd , door seekeren in anno 1746 afgesetten Batchiansen goegoegoe (of minister ) overgegeeven , daaruyt immediaat den Batchiansen koning verdenkende aan sluykerije schuldig te zijn , sonder te reflecteeren dat den aanbrenger is een geswooren vijand van dien vorst en dien volgende in allen opsigte voor suspect moet gehouden werden")
+    selected_entity = "Tematen"
+    year = 1753
 
     print(f"\nSearching for: {selected_entity}")
     print(f"Year: {year}")
