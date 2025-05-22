@@ -1,0 +1,19 @@
+model,Gouden_Leeuw.csv|MRR,Gouden_Leeuw.csv|MAP,Johannes_Thedens.csv|MRR,Johannes_Thedens.csv|MAP,Bantam.csv|MRR,Bantam.csv|MAP,Don_Felipe.csv|MRR,Don_Felipe.csv|MAP,Patna.csv|MRR,Patna.csv|MAP,AverageMRR,AverageMAP
+cleaned: LaBSE,1.0000,0.4499,1.0000,0.3175,1.0000,0.8009,1.0000,0.6756,0.5000,0.3057,0.9000,0.5099
+cleaned: paraphrase-multilingual-MiniLM-L12-v2,0.5000,0.4958,1.0000,0.4594,1.0000,0.6213,1.0000,0.6833,0.1429,0.1771,0.7286,0.4874
+cleaned+stopwords: LaBSE,0.5000,0.4290,0.5000,0.4001,1.0000,0.7597,1.0000,0.5667,0.3333,0.2792,0.6667,0.4869
+LaBSE,1.0000,0.3986,1.0000,0.2938,1.0000,0.8057,1.0000,0.5806,0.5000,0.3111,0.9000,0.4779
+distiluse-base-multilingual-cased-v2,0.5000,0.4582,0.3333,0.3783,0.5000,0.6805,1.0000,0.6083,1.0000,0.2376,0.6667,0.4726
+cleaned+stopwords: paraphrase-multilingual-MiniLM-L12-v2,0.2500,0.3448,0.1667,0.1360,1.0000,0.6288,1.0000,1.0000,0.3333,0.2007,0.5500,0.4621
+cleaned+stopwords: all-MiniLM-L6-v2,1.0000,0.6172,0.1111,0.1368,1.0000,0.5743,1.0000,0.7708,0.5000,0.1803,0.7222,0.4559
+cleaned: distiluse-base-multilingual-cased-v2,0.5000,0.4639,0.5000,0.3412,0.5000,0.6701,1.0000,0.5893,0.3333,0.2080,0.5667,0.4545
+cleaned+stopwords: distiluse-base-multilingual-cased-v2,1.0000,0.4089,0.5000,0.3520,1.0000,0.6984,1.0000,0.5625,0.2500,0.2179,0.7500,0.4479
+paraphrase-multilingual-MiniLM-L12-v2,0.3333,0.4533,1.0000,0.3089,0.5000,0.6083,1.0000,0.6659,0.1250,0.1894,0.5917,0.4452
+cleaned+stopwords: NetherlandsForensicInstitute/robbert-2022-dutch-sentence-transformers,1.0000,0.4225,0.1667,0.1069,1.0000,0.6156,0.5000,0.6458,1.0000,0.3272,0.7333,0.4236
+cleaned: all-MiniLM-L6-v2,0.3333,0.5044,0.3333,0.1909,1.0000,0.6524,1.0000,0.4583,1.0000,0.1903,0.7333,0.3993
+all-MiniLM-L6-v2,0.5000,0.5138,0.1429,0.1300,1.0000,0.6502,1.0000,0.4935,1.0000,0.1939,0.7286,0.3963
+cleaned+stopwords: GroNLP/bert-base-dutch-cased,1.0000,0.4585,0.5000,0.3108,1.0000,0.5949,0.0500,0.0629,0.2500,0.1872,0.5600,0.3229
+NetherlandsForensicInstitute/robbert-2022-dutch-sentence-transformers,0.1667,0.2843,0.5000,0.1332,1.0000,0.5683,0.3333,0.2288,1.0000,0.2940,0.6000,0.3017
+cleaned: NetherlandsForensicInstitute/robbert-2022-dutch-sentence-transformers,0.5000,0.3199,0.2500,0.1012,0.5000,0.5561,0.3333,0.2218,1.0000,0.2700,0.5167,0.2938
+GroNLP/bert-base-dutch-cased,0.5000,0.3163,0.3333,0.2701,1.0000,0.5392,0.0238,0.0466,1.0000,0.2494,0.5714,0.2843
+cleaned: GroNLP/bert-base-dutch-cased,1.0000,0.2827,0.2000,0.1910,1.0000,0.5371,0.0435,0.0531,1.0000,0.2541,0.6487,0.2636

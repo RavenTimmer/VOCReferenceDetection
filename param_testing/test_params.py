@@ -86,10 +86,10 @@ if __name__ == "__main__":
     ]
 
     transformers = [
+        # 'emanjavacas/GysBERT-v2', # Mentioned in paper
         'paraphrase-multilingual-MiniLM-L12-v2',
         'all-MiniLM-L6-v2',
         'distiluse-base-multilingual-cased-v2',
-        'stsb-roberta-base',
         'LaBSE',
         'NetherlandsForensicInstitute/robbert-2022-dutch-sentence-transformers'
     ]

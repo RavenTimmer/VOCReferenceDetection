@@ -1,0 +1,145 @@
+Model Ranking:
+
+Model: cleaned: LaBSE
+File: Gouden_Leeuw.csv, MRR: 1.0000, MAP: 0.4499
+File: Johannes_Thedens.csv, MRR: 1.0000, MAP: 0.3175
+File: Bantam.csv, MRR: 1.0000, MAP: 0.8009
+File: Don_Felipe.csv, MRR: 1.0000, MAP: 0.6756
+File: Patna.csv, MRR: 0.5000, MAP: 0.3057
+Average MRR: 0.9000, Average MAP: 0.5099
+
+Model: cleaned: paraphrase-multilingual-MiniLM-L12-v2
+File: Gouden_Leeuw.csv, MRR: 0.5000, MAP: 0.4958
+File: Johannes_Thedens.csv, MRR: 1.0000, MAP: 0.4594
+File: Bantam.csv, MRR: 1.0000, MAP: 0.6213
+File: Don_Felipe.csv, MRR: 1.0000, MAP: 0.6833
+File: Patna.csv, MRR: 0.1429, MAP: 0.1771
+Average MRR: 0.7286, Average MAP: 0.4874
+
+Model: cleaned+stopwords: LaBSE
+File: Gouden_Leeuw.csv, MRR: 0.5000, MAP: 0.4290
+File: Johannes_Thedens.csv, MRR: 0.5000, MAP: 0.4001
+File: Bantam.csv, MRR: 1.0000, MAP: 0.7597
+File: Don_Felipe.csv, MRR: 1.0000, MAP: 0.5667
+File: Patna.csv, MRR: 0.3333, MAP: 0.2792
+Average MRR: 0.6667, Average MAP: 0.4869
+
+Model: LaBSE
+File: Gouden_Leeuw.csv, MRR: 1.0000, MAP: 0.3986
+File: Johannes_Thedens.csv, MRR: 1.0000, MAP: 0.2938
+File: Bantam.csv, MRR: 1.0000, MAP: 0.8057
+File: Don_Felipe.csv, MRR: 1.0000, MAP: 0.5806
+File: Patna.csv, MRR: 0.5000, MAP: 0.3111
+Average MRR: 0.9000, Average MAP: 0.4779
+
+Model: distiluse-base-multilingual-cased-v2
+File: Gouden_Leeuw.csv, MRR: 0.5000, MAP: 0.4582
+File: Johannes_Thedens.csv, MRR: 0.3333, MAP: 0.3783
+File: Bantam.csv, MRR: 0.5000, MAP: 0.6805
+File: Don_Felipe.csv, MRR: 1.0000, MAP: 0.6083
+File: Patna.csv, MRR: 1.0000, MAP: 0.2376
+Average MRR: 0.6667, Average MAP: 0.4726
+
+Model: cleaned+stopwords: paraphrase-multilingual-MiniLM-L12-v2
+File: Gouden_Leeuw.csv, MRR: 0.2500, MAP: 0.3448
+File: Johannes_Thedens.csv, MRR: 0.1667, MAP: 0.1360
+File: Bantam.csv, MRR: 1.0000, MAP: 0.6288
+File: Don_Felipe.csv, MRR: 1.0000, MAP: 1.0000
+File: Patna.csv, MRR: 0.3333, MAP: 0.2007
+Average MRR: 0.5500, Average MAP: 0.4621
+
+Model: cleaned+stopwords: all-MiniLM-L6-v2
+File: Gouden_Leeuw.csv, MRR: 1.0000, MAP: 0.6172
+File: Johannes_Thedens.csv, MRR: 0.1111, MAP: 0.1368
+File: Bantam.csv, MRR: 1.0000, MAP: 0.5743
+File: Don_Felipe.csv, MRR: 1.0000, MAP: 0.7708
+File: Patna.csv, MRR: 0.5000, MAP: 0.1803
+Average MRR: 0.7222, Average MAP: 0.4559
+
+Model: cleaned: distiluse-base-multilingual-cased-v2
+File: Gouden_Leeuw.csv, MRR: 0.5000, MAP: 0.4639
+File: Johannes_Thedens.csv, MRR: 0.5000, MAP: 0.3412
+File: Bantam.csv, MRR: 0.5000, MAP: 0.6701
+File: Don_Felipe.csv, MRR: 1.0000, MAP: 0.5893
+File: Patna.csv, MRR: 0.3333, MAP: 0.2080
+Average MRR: 0.5667, Average MAP: 0.4545
+
+Model: cleaned+stopwords: distiluse-base-multilingual-cased-v2
+File: Gouden_Leeuw.csv, MRR: 1.0000, MAP: 0.4089
+File: Johannes_Thedens.csv, MRR: 0.5000, MAP: 0.3520
+File: Bantam.csv, MRR: 1.0000, MAP: 0.6984
+File: Don_Felipe.csv, MRR: 1.0000, MAP: 0.5625
+File: Patna.csv, MRR: 0.2500, MAP: 0.2179
+Average MRR: 0.7500, Average MAP: 0.4479
+
+Model: paraphrase-multilingual-MiniLM-L12-v2
+File: Gouden_Leeuw.csv, MRR: 0.3333, MAP: 0.4533
+File: Johannes_Thedens.csv, MRR: 1.0000, MAP: 0.3089
+File: Bantam.csv, MRR: 0.5000, MAP: 0.6083
+File: Don_Felipe.csv, MRR: 1.0000, MAP: 0.6659
+File: Patna.csv, MRR: 0.1250, MAP: 0.1894
+Average MRR: 0.5917, Average MAP: 0.4452
+
+Model: cleaned+stopwords: NetherlandsForensicInstitute/robbert-2022-dutch-sentence-transformers
+File: Gouden_Leeuw.csv, MRR: 1.0000, MAP: 0.4225
+File: Johannes_Thedens.csv, MRR: 0.1667, MAP: 0.1069
+File: Bantam.csv, MRR: 1.0000, MAP: 0.6156
+File: Don_Felipe.csv, MRR: 0.5000, MAP: 0.6458
+File: Patna.csv, MRR: 1.0000, MAP: 0.3272
+Average MRR: 0.7333, Average MAP: 0.4236
+
+Model: cleaned+stopwords: stsb-roberta-base
+File: Gouden_Leeuw.csv, MRR: 1.0000, MAP: 0.4871
+File: Johannes_Thedens.csv, MRR: 1.0000, MAP: 0.2813
+File: Bantam.csv, MRR: 0.5000, MAP: 0.4278
+File: Don_Felipe.csv, MRR: 1.0000, MAP: 0.6595
+File: Patna.csv, MRR: 0.1250, MAP: 0.1452
+Average MRR: 0.7250, Average MAP: 0.4002
+
+Model: cleaned: all-MiniLM-L6-v2
+File: Gouden_Leeuw.csv, MRR: 0.3333, MAP: 0.5044
+File: Johannes_Thedens.csv, MRR: 0.3333, MAP: 0.1909
+File: Bantam.csv, MRR: 1.0000, MAP: 0.6524
+File: Don_Felipe.csv, MRR: 1.0000, MAP: 0.4583
+File: Patna.csv, MRR: 1.0000, MAP: 0.1903
+Average MRR: 0.7333, Average MAP: 0.3993
+
+Model: all-MiniLM-L6-v2
+File: Gouden_Leeuw.csv, MRR: 0.5000, MAP: 0.5138
+File: Johannes_Thedens.csv, MRR: 0.1429, MAP: 0.1300
+File: Bantam.csv, MRR: 1.0000, MAP: 0.6502
+File: Don_Felipe.csv, MRR: 1.0000, MAP: 0.4935
+File: Patna.csv, MRR: 1.0000, MAP: 0.1939
+Average MRR: 0.7286, Average MAP: 0.3963
+
+Model: cleaned: stsb-roberta-base
+File: Gouden_Leeuw.csv, MRR: 1.0000, MAP: 0.5033
+File: Johannes_Thedens.csv, MRR: 0.1111, MAP: 0.1841
+File: Bantam.csv, MRR: 1.0000, MAP: 0.4481
+File: Don_Felipe.csv, MRR: 1.0000, MAP: 0.5917
+File: Patna.csv, MRR: 0.5000, MAP: 0.1602
+Average MRR: 0.7222, Average MAP: 0.3775
+
+Model: stsb-roberta-base
+File: Gouden_Leeuw.csv, MRR: 1.0000, MAP: 0.5439
+File: Johannes_Thedens.csv, MRR: 0.0625, MAP: 0.1573
+File: Bantam.csv, MRR: 1.0000, MAP: 0.4187
+File: Don_Felipe.csv, MRR: 0.5000, MAP: 0.4571
+File: Patna.csv, MRR: 0.1429, MAP: 0.1280
+Average MRR: 0.5411, Average MAP: 0.3410
+
+Model: NetherlandsForensicInstitute/robbert-2022-dutch-sentence-transformers
+File: Gouden_Leeuw.csv, MRR: 0.1667, MAP: 0.2843
+File: Johannes_Thedens.csv, MRR: 0.5000, MAP: 0.1332
+File: Bantam.csv, MRR: 1.0000, MAP: 0.5683
+File: Don_Felipe.csv, MRR: 0.3333, MAP: 0.2288
+File: Patna.csv, MRR: 1.0000, MAP: 0.2940
+Average MRR: 0.6000, Average MAP: 0.3017
+
+Model: cleaned: NetherlandsForensicInstitute/robbert-2022-dutch-sentence-transformers
+File: Gouden_Leeuw.csv, MRR: 0.5000, MAP: 0.3199
+File: Johannes_Thedens.csv, MRR: 0.2500, MAP: 0.1012
+File: Bantam.csv, MRR: 0.5000, MAP: 0.5561
+File: Don_Felipe.csv, MRR: 0.3333, MAP: 0.2218
+File: Patna.csv, MRR: 1.0000, MAP: 0.2700
+Average MRR: 0.5167, Average MAP: 0.2938
