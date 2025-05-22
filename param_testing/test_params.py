@@ -62,12 +62,14 @@ def mean_average_precision(ranked_indices, correct_indices):
 if __name__ == "__main__":
     source_texts = [
         "de Gouden Leeuw  is onbequaem bevonden omme met retouren naer ’t vaderlandt over te gaen, jaa is inwendich soo vergaen, dat, onaengesyen de handt daer extra-ordinaris aengehouden is, niet langer in ’t vaerwater sal connen continueren.",
-        "zo is dat een en ander van die efficatie geweest dat de finale dispositie daarover is gesurcheert gebleven tot 30e daaraanvolgende , als wanneer Zijn Edelheyt desselvs zo even aangehaalde intentie wederom ten tapijte , en na het ingekomen advijs van den heere gouverneur-generaal Thedens de zake zooverre gebragt heeft , datter alsdoen g’arresteert is hem per het schip Amsterdam op den 6e november te laten vertrecken , en bij erlanginge van eenig favorabel berigt wegens den Javasen krijg (dog anders niet ) de Oude Zijp tot geselschap mede te geven , invoegen als den heere Valckenier op dien gestipuleerden dag dan ook met voormelte Amsterdam alleen de reyse van dese rheede ondernomen en het generalaat in behoorlijke forma aan desselvs successeur , den presenten heere gouverneur-generaal Johannes Thedens"
+        "zo is dat een en ander van die efficatie geweest dat de finale dispositie daarover is gesurcheert gebleven tot 30e daaraanvolgende , als wanneer Zijn Edelheyt desselvs zo even aangehaalde intentie wederom ten tapijte , en na het ingekomen advijs van den heere gouverneur-generaal Thedens de zake zooverre gebragt heeft , datter alsdoen g’arresteert is hem per het schip Amsterdam op den 6e november te laten vertrecken , en bij erlanginge van eenig favorabel berigt wegens den Javasen krijg (dog anders niet ) de Oude Zijp tot geselschap mede te geven , invoegen als den heere Valckenier op dien gestipuleerden dag dan ook met voormelte Amsterdam alleen de reyse van dese rheede ondernomen en het generalaat in behoorlijke forma aan desselvs successeur , den presenten heere gouverneur-generaal Johannes Thedens",
+        "Naderhant hebben wij Bantam onder scheut ende doel van canon met verscheyde schepen , jachten ende chaloupen , die andersints alhier ter reede vruchteloos sonder dienst souden gelegen hebben , beset gehouden ende de dichte ende de naeuwe besettinge tot op den llen januarij gecontinueert , als wanneer onse gemelte schepen (willende schuwen ende eviteeren het groot perijckel der branders , die den vijant op verscheyde tijden"
     ]
 
-    inputs = [
-        pd.read_csv('Gouden_Leeuw.csv'),
-        pd.read_csv('Johannes_Thedens.csv')
+    files = [
+        'Gouden_Leeuw.csv',
+        'Johannes_Thedens.csv',
+        'Bantam.csv'
     ]
 
     transformers = [
@@ -76,43 +78,50 @@ if __name__ == "__main__":
         'distiluse-base-multilingual-cased-v2',
         'stsb-roberta-base',
         'LaBSE',
-        'dbmdz/bert-base-historic-dutch-cased',
-        'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2',
-        'distilbert-base-multilingual-cased',
-        'GroNLP/bert-base-dutch-cased'
+        'NetherlandsForensicInstitute/robbert-2022-dutch-sentence-transformers'
     ]
+
+    inputs = [pd.read_csv(file) for file in files]
 
     model_ranking = {}
     for i, df in enumerate(inputs):
-        print(f"\nProcessing file: {['Gouden_Leeuw.csv', 'Johannes_Thedens.csv'][i]}")
+        print(f"\nProcessing file: {files[i]}")
         texts = df['text'].tolist()
         correct_indices = set(df.index[df['correct'] == 1].tolist())
         original_text = source_texts[i]
 
         for model_name in transformers:
-            print(f"\nEvaluating model: {model_name}")
-            model = SentenceTransformer(model_name)
-            text_embeddings = model.encode(texts, convert_to_numpy=True, show_progress_bar=False)
-            query_embedding = model.encode([original_text], convert_to_numpy=True)
+            for cleaned in [False, True]:
+                label = f"cleaned: {model_name}" if cleaned else model_name
+                print(f"\nEvaluating model: {label}")
+                model = SentenceTransformer(model_name)
+                if cleaned:
+                    proc_texts = [clean_text(t) for t in texts]
+                    proc_query = clean_text(original_text)
+                else:
+                    proc_texts = texts
+                    proc_query = original_text
 
-            index = faiss.IndexFlatIP(text_embeddings.shape[1])
-            index.add(text_embeddings)
-            top_k = min(5, len(texts))
-            distances, indices = index.search(query_embedding, len(texts))
-            ranked_indices = indices[0]
+                text_embeddings = model.encode(proc_texts, convert_to_numpy=True, show_progress_bar=False)
+                query_embedding = model.encode([proc_query], convert_to_numpy=True)
 
-            mrr = mean_reciprocal_rank(ranked_indices, correct_indices)
-            map_score = mean_average_precision(ranked_indices, correct_indices)
-            print(f"Mean Reciprocal Rank (MRR): {mrr:.4f}")
-            print(f"Mean Average Precision (MAP): {map_score:.4f}")
+                index = faiss.IndexFlatIP(text_embeddings.shape[1])
+                index.add(text_embeddings)
+                distances, indices = index.search(query_embedding, len(proc_texts))
+                ranked_indices = indices[0]
 
-            if model_name not in model_ranking:
-                model_ranking[model_name] = []
-            model_ranking[model_name].append({'file': ['Gouden_Leeuw.csv', 'Johannes_Thedens.csv'][i], 'MRR': mrr, 'MAP': map_score})
+                mrr = mean_reciprocal_rank(ranked_indices, correct_indices)
+                map_score = mean_average_precision(ranked_indices, correct_indices)
+                print(f"Mean Reciprocal Rank (MRR): {mrr:.4f}")
+                print(f"Mean Average Precision (MAP): {map_score:.4f}")
 
-            del model
-            torch.cuda.empty_cache()
-            gc.collect()
+                if label not in model_ranking:
+                    model_ranking[label] = []
+                model_ranking[label].append({'file': files[i], 'MRR': mrr, 'MAP': map_score})
+
+                del model
+                torch.cuda.empty_cache()
+                gc.collect()
 
     print("\nModel Ranking:")
     avg_scores = []
@@ -128,4 +137,3 @@ if __name__ == "__main__":
         for result in results:
             print(f"File: {result['file']}, MRR: {result['MRR']:.4f}, MAP: {result['MAP']:.4f}")
         print(f"Average MRR: {avg_mrr:.4f}, Average MAP: {avg_map:.4f}")
-

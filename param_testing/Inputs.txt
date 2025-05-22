@@ -17,10 +17,10 @@ Year: 1633
 Term: Bantam
 
 Input 4:
-Source:
-Text:
-Year:
-Term:
+Source: 1019 , fol. 1-83 .
+Text: De geestelickheyt en de gemeente in Goa , meynende haer den Coninck verlaeten te hebben , emuleerden hevich tegen den vice-roy , die om finantie te tournieren de gemeente met schattingen ende impositien seer beswaerde.
+Year: 1633
+Term: Goa
 
 Input 5:
 Source:

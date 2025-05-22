@@ -30,9 +30,9 @@ def clean_text(text):
 
 if __name__ == "__main__":
     original_text = clean_text(
-        "zig te verbinden tot de afgave van een enorme somma van ropia’s 100.000 , -, voordat gemelte nawab gedisponeert heeft konnen werden tot de afgave van een generaal bevelschrift tot het oeffenen van onsen vrijen handel , die in ’ t geheel tot die tijd op een violente en geweldadige wijse gestremt en gesloten was geworden .")
-    selected_entity = "Nawab"
-    year = 1759
+        "De geestelickheyt en de gemeente in Goa , meynende haer den Coninck verlaeten te hebben , emuleerden hevich tegen den vice-roy , die om finantie te tournieren de gemeente met schattingen ende impositien seer beswaerde.")
+    selected_entity = "Goa"
+    year = 1633
 
     print(f"\nSearching for: {selected_entity}")
     print(f"Year: {year}")
